@@ -1,6 +1,6 @@
 {
   "name": "react-valence-ui-iframe",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "An iframe wrapper which provides callbacks for when the iframe has loaded and callbacks providing the size of the iframe's contents if we can figure them out",
   "main": "src/react-valence-ui-iframe.js",
   "scripts": {
@@ -19,8 +19,7 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
-    "react-dom": "^0.14.0 || ^15.0.0",
-    "lit-element": "^2.0.0"
+    "react-dom": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
@@ -43,6 +42,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "lcov-result-merger": "^1.0.2",
+    "lit-element": "^2.0.0",
     "mkdirp": "^0.5.1",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
