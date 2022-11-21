@@ -134,8 +134,13 @@ ResizeCallbackMaker.prototype.startResizingCallbacks = function(iframe, callback
 			cleanup: stopListening
 		};
 	} else {
+		// Hack to prevent the callback from being repeatedly called when rendering a file in Lessons.
+		// This was causing height & overflow-y to be incorrect as a recent
+		// change caused these to now be on the same domain.
+		const iframeIsLessonsFile = iframe && iframe.classList.contains('html-topic-iframe');
+
 		var props = {
-			toggle: true,
+			toggle: !iframeIsLessonsFile,
 			callback: callback,
 			iframe: iframe
 		};
