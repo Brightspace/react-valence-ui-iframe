@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import * as ResizeCallbackMaker from './ResizeCallbackMaker.js';
+import ResizeCallbackMaker from './ResizeCallbackMaker.js';
 import { styleMap } from 'lit/directives/style-map.js';
 
 class IFrame extends LitElement {

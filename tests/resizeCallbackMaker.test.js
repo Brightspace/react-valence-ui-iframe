@@ -1,5 +1,6 @@
-var ResizeCallbackMaker = require('../ResizeCallbackMaker.js'),
-	sinon = require('sinon');
+import ResizeCallbackMaker from '../src/ResizeCallbackMaker.js';
+import Sinon from 'sinon';
+
 
 describe('react-valence-ui-iframe', function() {
 	var sandbox,
@@ -7,9 +8,9 @@ describe('react-valence-ui-iframe', function() {
 		callback;
 
 	beforeEach(function() {
-		sandbox = sinon.sandbox.create();
-		iframe = sinon.stub(),
-		callback = sinon.stub();
+		sandbox = Sinon.createSandbox();
+		iframe = Sinon.stub(),
+		callback = Sinon.stub();
 	});
 
 	afterEach(() => {
@@ -136,7 +137,7 @@ describe('react-valence-ui-iframe', function() {
 				handler: 'd2l.iframe.host',
 				height: height
 			});
-			ResizeCallbackMaker.listenForCrossDomainSizeChanges(sinon.stub(), callback);
+			ResizeCallbackMaker.listenForCrossDomainSizeChanges(Sinon.stub(), callback);
 			expect(callback.calledWith(height, 'hidden')).toBe(true);
 		});
 
@@ -145,14 +146,14 @@ describe('react-valence-ui-iframe', function() {
 				handler: 'got.milk?',
 				haveMilk: true
 			});
-			ResizeCallbackMaker.listenForCrossDomainSizeChanges(sinon.stub(), callback);
+			ResizeCallbackMaker.listenForCrossDomainSizeChanges(Sinon.stub(), callback);
 			expect(callback.called).toBe(false);
 		});
 
 		it('does not throw an error if given bad data', function() {
 			sandbox.stub(JSON, 'parse').throws();
 			var func = function() {
-				ResizeCallbackMaker.listenForCrossDomainSizeChanges(sinon.stub(), callback);
+				ResizeCallbackMaker.listenForCrossDomainSizeChanges(Sinon.stub(), callback);
 			};
 			expect(func).not.toThrow();
 		});
@@ -160,7 +161,7 @@ describe('react-valence-ui-iframe', function() {
 
 	describe('requestIframeSize', function() {
 		it('posts a message to the content window of the iframe', function() {
-			var testIframe = { contentWindow: { postMessage: sinon.stub() }};
+			var testIframe = { contentWindow: { postMessage: Sinon.stub() }};
 			ResizeCallbackMaker.requestIframeSize(testIframe);
 			expect(testIframe.contentWindow.postMessage.called).toBe(true);
 		});
@@ -181,7 +182,7 @@ describe('react-valence-ui-iframe', function() {
 	describe('checkForLegacyFrameSets', function() {
 		it('returns true if the iframe contains a frameset', function() {
 			var testIframe = { contentWindow: { document: {
-				getElementsByTagName: sinon.stub().returns(['frameset'])
+				getElementsByTagName: Sinon.stub().returns(['frameset'])
 			}}};
 
 			expect(ResizeCallbackMaker.checkForLegacyFrameSets(testIframe)).toBe(true);
@@ -189,7 +190,7 @@ describe('react-valence-ui-iframe', function() {
 
 		it('returns false if the iframe contains no framesets', function() {
 			var testIframe = { contentWindow: { document: {
-				getElementsByTagName: sinon.stub().returns([])
+				getElementsByTagName: Sinon.stub().returns([])
 			}}};
 
 			expect(ResizeCallbackMaker.checkForLegacyFrameSets(testIframe)).toBe(false);
