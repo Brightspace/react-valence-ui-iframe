@@ -42,6 +42,7 @@ var ResizingIframe = React.createClass({
 				<d2l-iframe-wrapper-for-react
 					ref={e => this.frame = e}
 					class="resizing-iframe"
+					data-testid="lit-iframe-wrapper"
 					src={this.props.src}
 					resize
 				></d2l-iframe-wrapper-for-react>
